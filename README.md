@@ -1,25 +1,84 @@
 # CepalRuby
 Test Ruby On Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This restapi use SQLite3
 
-Things you may want to cover:
+# Start the server with:
 
-* Ruby version
+$ rails db:migrate
+$ rails s -p 3001
 
-* System dependencies
+# Using postman here is all Endpoints API
 
-* Configuration
+# post user [http://127.0.0.1:3001/users]
 
-* Database creation
+{
+  "user": {
+    "name": "Kilian James",
+    "email": "kilianjames@gmail.com",
+    "password": "password123"
+  }
+}
 
-* Database initialization
+{
+  "user": {
+    "name": "David becam",
+    "email": "david.becam@yahoo.com",
+    "password": "password123"
+  }
+}
 
-* How to run the test suite
+# post wallet {http://127.0.0.1:3001/wallets}
 
-* Services (job queues, cache servers, search engines, etc.)
+{
+  "wallet": {
+    "user_id": 1
+  }
+}
 
-* Deployment instructions
 
-* ...
+{
+  "wallet": {
+    "user_id": 2
+  }
+}
+
+# get one wallete
+
+http://127.0.0.1:3001/wallets/:id
+
+# post transaction
+== CREDIT : to credit 200€ on wallet 1
+{
+  "transaction": {
+    "wallet_id": "1",  
+    "amount": 100.0,  
+    "transaction_type": "credit"
+  }
+}
+
+== DEBIT : to debit 100€ on wallet 1
+{
+  "transaction": {
+    "wallet_id": "1",  
+    "amount": 100.0,  
+    "transaction_type": "debit"
+  }
+}
+
+== TRANSFER : to transfer 50€ form wallet 1 to wallet 2
+{
+  "transaction": {
+    "wallet_id": "1",  
+    "recipient_wallet_id": "2",  
+    "amount": 50,  
+    "transaction_type": "transfer"
+  }
+}
+# get one transaction
+
+http://127.0.0.1:3001/transactions/:id
+
+# get one wallet with his transactions
+
+http://127.0.0.1:3001/wallets/:wallet_id/transactions
