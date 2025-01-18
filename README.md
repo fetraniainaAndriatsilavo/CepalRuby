@@ -4,20 +4,31 @@ Test Ruby On Rails
 This restapi use SQLite3
 
 # Start the server with:
-
-```
+ensures that your database schema is up
+```bash
 $ rails db:migrate
 ```
 
-```
+starts your Rails application and makes it accessible at http://localhost:3001
+```bash
 $ rails s -p 3001
+```
+
+runs the RSpec tests
+```bash
+$ bundle exec rspec
+```
+
+check Ruby code for any issues related to style
+```bash
+$ bundle exec rubocop
 ```
 
 # Here are all the API endpoints, tested using Postman
 
 # post user [http://127.0.0.1:3001/users]
 try to create 2 users
-```
+```json
 {
   "user": {
     "name": "Kilian James",
@@ -27,7 +38,7 @@ try to create 2 users
 }
 ```
 
-```
+```json
 {
   "user": {
     "name": "David becam",
@@ -39,7 +50,7 @@ try to create 2 users
 
 # post wallet {http://127.0.0.1:3001/wallets}
 create one wallet for each user
-```
+```json
 {
   "wallet": {
     "user_id": 1
@@ -47,7 +58,7 @@ create one wallet for each user
 }
 ```
 
-```
+```json
 {
   "wallet": {
     "user_id": 2
@@ -64,7 +75,7 @@ http://127.0.0.1:3001/wallets/:id
 Attempt to send/transfer money between the two wallets we created earlier
 
 == CREDIT : to credit 200€ on wallet 1
-```
+```json
 {
   "transaction": {
     "wallet_id": "1",  
@@ -75,7 +86,7 @@ Attempt to send/transfer money between the two wallets we created earlier
 ```
 
 == DEBIT : to debit 100€ on wallet 1
-```
+```json
 {
   "transaction": {
     "wallet_id": "1",  
@@ -86,7 +97,7 @@ Attempt to send/transfer money between the two wallets we created earlier
 ```
 
 == TRANSFER : to transfer 50€ form wallet 1 to wallet 2
-```
+```json
 {
   "transaction": {
     "wallet_id": "1",  
