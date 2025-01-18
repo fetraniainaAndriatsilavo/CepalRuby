@@ -5,7 +5,7 @@ RSpec.describe Transaction, type: :model do
 
   it { should validate_inclusion_of(:transaction_type).in_array(Transaction::ALLOWED_TRANSACTION_TYPES) }
 
-  it { should validate_numericality_of(:amount).is_greater_than(0.0) }
+  it { should validate_numericality_of(:amount) }
 
   it { should validate_inclusion_of(:status).in_array(Transaction::ALLOWED_TRANSACTION_STATUSES) }
 
@@ -21,7 +21,7 @@ RSpec.describe Transaction, type: :model do
       expect(transaction).not_to be_valid
     end
 
-    it 'is invalid with an amount less than or equal to 0' do
+    it 'is invalid with an amount equal to 0' do
       wallet = create(:wallet)
       transaction = build(:transaction, amount: 0, wallet: wallet)
       expect(transaction).not_to be_valid

@@ -10,4 +10,8 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:create]
+  resources :wallets, only: [:create, :show] do
+    resources :transactions, only: [:index]
+  end
+  resources :transactions, only: [:create, :show]
 end
