@@ -118,3 +118,6 @@ http://127.0.0.1:3001/transactions/:id
 ```
 http://127.0.0.1:3001/wallets/:wallet_id/transactions
 ```
+
+# REF
+![Alt text](https://github.com/RFaly/CepalRuby/blob/main/public/Screenshot%202025-01-18%20123311.png?raw=true)
