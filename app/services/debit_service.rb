@@ -3,17 +3,17 @@ class DebitService
       @wallet = wallet
       @amount = amount
     end
-  
+
     def process_debit
       raise ActiveRecord::Rollback, "Insufficient balance" if sufficient_balance?
-      
+
       ActiveRecord::Base.transaction do
         transaction = Transaction.create!(
           wallet: @wallet,
           recipient_wallet: nil,
           amount: -@amount,
-          transaction_type: 'debit',
-          status: 'completed'
+          transaction_type: "debit",
+          status: "completed"
         )
 
         @wallet.update!(balance: @wallet.balance - @amount)
@@ -27,5 +27,4 @@ class DebitService
     def sufficient_balance?
         @wallet.balance < @amount
     end
-  end
-  
+end

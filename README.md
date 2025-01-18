@@ -68,7 +68,7 @@ Attempt to send/transfer money between the two wallets we created earlier
 {
   "transaction": {
     "wallet_id": "1",  
-    "amount": 100.0,  
+    "amount": 200.0,  
     "transaction_type": "credit"
   }
 }

@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
 
-  resources :users, only: [:create]
-  resources :wallets, only: [:create, :show] do
-    resources :transactions, only: [:index]
+  resources :users, only: [ :create ]
+  resources :wallets, only: [ :create, :show ] do
+    resources :transactions, only: [ :index ]
   end
-  resources :transactions, only: [:create, :show]
+  resources :transactions, only: [ :create, :show ]
 end

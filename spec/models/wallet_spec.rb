@@ -24,20 +24,20 @@ RSpec.describe Wallet, type: :model do
     let(:wallet) { create(:wallet, balance: 0.0) }
     let(:debit) { create(:transaction, wallet: wallet, amount: -50.0, status: :completed) }
     let(:credit) { create(:transaction, wallet: wallet, amount: 50.0, status: :completed) }
-  
+
     before do
       debit
       credit
     end
-  
+
     it 'is valid when balance matches the sum of completed transactions' do
       expect(wallet).to be_valid
       expect(wallet.balance).to eq(debit.amount + credit.amount)
     end
-  
+
     it 'is invalid when balance does not match the sum of completed transactions' do
       create(:transaction, wallet: wallet, amount: 100.0, status: :completed)
-  
+
       expect(wallet).not_to be_valid
       expect(wallet.errors[:balance]).to include("should be equal to the sum of completed debit and credit transactions")
     end
