@@ -10,6 +10,7 @@ class TransactionService
     end
   
     def create_transaction
+        #do not process transaction when amount is less than or equals to 0
         if @amount <= 0
             @errors.add(:base, "Amount should be greater than 0")
             return false
@@ -27,6 +28,7 @@ class TransactionService
             return false
         end
 
+        #can not make transfer funds between same wallet
         if @recipient_wallet&.id == @wallet.id
             @errors.add(:base, "Recipient wallet and wallet must be different")
             return false
